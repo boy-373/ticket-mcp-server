@@ -299,7 +299,7 @@ def build_mcp_server(api_base_url: str, host: str, port: int, sse_path: str) -> 
         ),
         host=host,
         port=port,
-        sse_path=sse_path,
+        streamable_http_path="/mcp",
     )
 
     client = TicketApiClient(api_base_url)
@@ -637,7 +637,7 @@ def main() -> None:
     logger.info("=" * 60)
 
     mcp = build_mcp_server(api_base_url, host, port, sse_path)
-    mcp.run(transport="sse")
+    mcp.run(transport="streamable-http")
 
 
 if __name__ == "__main__":
